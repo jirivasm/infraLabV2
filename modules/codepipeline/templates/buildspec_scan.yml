@@ -2,9 +2,9 @@ version: 0.2
 
 env:
   parameter-store:
-    SONARQUBE_TOKEN: "SonarQubeToken"
-    SONARQUBE_ENDPOINT: "SonarQubeEndpoint"
-    SONAR_ORG: "SonarQubeOrg"
+    SONARQUBE_TOKEN: "sonartoken"
+    SONARQUBE_ENDPOINT: "endpoint"
+    SONAR_ORG: "organization"
 
 phases:
   install:
@@ -16,4 +16,4 @@ phases:
       - export PATH=$PATH:./sonar-scanner-4.7.0.2747-linux/bin/
   build:
     commands:
-      - sonar-scanner -Dsonar.projectKey=sample-lambda -Dsonar.sources=. -Dsonar.login=${SONARQUBE_TOKEN} -Dsonar.organization=${SONAR_ORG} -Dsonar.host.url=${SONARQUBE_ENDPOINT}
+      - sonar-scanner -Dsonar.projectKey=sample-lambda-v2 -Dsonar.sources=. -Dsonar.login=${SONARQUBE_TOKEN} -Dsonar.organization=${SONAR_ORG} -Dsonar.host.url=${SONARQUBE_ENDPOINT}

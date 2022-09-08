@@ -9,7 +9,12 @@ resource "aws_s3_bucket_acl" "codepipeline_bucket_acl" {
   bucket = aws_s3_bucket.codepipeline_bucket.id
   acl    = "private"
 }
-
+resource "aws_s3_bucket_versioning" "versioning_s3" {
+  bucket = aws_s3_bucket.codepipeline_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
 resource "aws_codebuild_project" "project" {
     count           = length(local.projects)
     name            = "${var.env_namespace}_${local.projects[count.index]}"
@@ -43,7 +48,7 @@ resource "aws_codebuild_project" "project" {
         #buildspec = file("${path.module}/stage1-buildspec.yml")
     }
 
-    source_version = "master"
+    source_version = "main"
 
     tags = {
         env = var.env_namespace

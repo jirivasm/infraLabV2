@@ -1,6 +1,6 @@
 variable "codecommit_branch" {
     type = string
-    default = "master"
+    default = "main"
 }
 variable "general_namespace" {
     type = string

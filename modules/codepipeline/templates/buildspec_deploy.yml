@@ -24,4 +24,4 @@ phases:
       - cat terraform.tfvars | hclq set 'env_namespace' $ENV_NAMESPACE | hclq set 'ecr_repo_url' $REPO_URI | hclq set 'ecr_repo_arn' $REPO_ARN | tee terraform.tfvars
       - terraform init -input=false
       - terraform validate
-      - terraform apply
+      - terraform apply -auto-approve
